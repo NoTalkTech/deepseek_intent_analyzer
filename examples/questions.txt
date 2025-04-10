@@ -1,0 +1,3 @@
+我在用 ClickHouse 查询一个分区表，发现有的查询特别慢，怀疑没走到分区裁剪，能不能帮我分析下原因？
+StarRocks 的 bitmap_union_count 和 count(distinct) 哪个效率更高？
+Flink 的窗口函数怎么处理迟到数据？watermark 怎么设置？

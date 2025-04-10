@@ -14,8 +14,7 @@ input_question = st.text_area("✍️ 输入你的问题", height=100)
 
 if st.button("🚀 开始分析", type="primary") and input_question.strip():
     with st.spinner("正在联网搜索 & 调用 DeepSeek 模型分析中..."):
-        search_snippet = web_search(input_question)
-        result, raw = analyze_question(input_question, search_snippet)
+        result, raw, search_summary, references = analyze_question(input_question, top_n=3)
 
     st.subheader("📌 模型结构化分析")
     if "error" in result:
@@ -24,9 +23,9 @@ if st.button("🚀 开始分析", type="primary") and input_question.strip():
     else:
         st.json(result)
 
-        if search_snippet:
+        if search_summary:
             st.subheader("🔍 联网搜索摘要")
-            st.text_area("Search Info", search_snippet, height=200)
+            st.text_area("Search Info", search_summary, height=200)
 
         with st.expander("📄 原始模型输出"):
             st.text_area("Raw Output", raw, height=300)
