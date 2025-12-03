@@ -1,4 +1,14 @@
 import os
+from pathlib import Path
+from dotenv import load_dotenv
+
+# 自动加载 .env 文件
+env_path = Path(__file__).parent / ".env"
+if env_path.exists():
+    load_dotenv(env_path)
+    print(f"✅ 已加载 .env 文件: {env_path}")
+else:
+    print("⚠️  未找到 .env 文件，将使用系统环境变量")
 
 # 从环境变量读取 API Key
 DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY")
@@ -11,6 +21,7 @@ if not DEEPSEEK_API_KEY:
     print("\n或创建 .env 文件（不会提交到 Git）")
     # 注意：不要在这里退出，让应用启动时再处理
 
-# 模型配置
-DEEPSEEK_ENDPOINT = "https://api.deepseek.com/chat/completions"
-MODEL = "deepseek-chat"
+# API 配置
+DEEPSEEK_BASE_URL = os.environ.get("DEEPSEEK_BASE_URL", "https://api.deepseek.com")
+DEEPSEEK_ENDPOINT = f"{DEEPSEEK_BASE_URL}/chat/completions"
+MODEL = os.getenv("DEEPSEEK_MODEL", "deepseek-chat")

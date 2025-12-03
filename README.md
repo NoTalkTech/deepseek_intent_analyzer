@@ -23,6 +23,7 @@ export DEEPSEEK_API_KEY="your-api-key-here"
 ## 📖 文档
 
 - **[QUICKSTART.md](QUICKSTART.md)** - 快速开始和常见问题
+- **[ENV_SETUP_GUIDE.md](ENV_SETUP_GUIDE.md)** - 环境变量配置详细指南 ⭐
 - **[CHEATSHEET.md](CHEATSHEET.md)** - 命令速查表
 - **[.cursorrules](.cursorrules)** - 项目开发规则
 
