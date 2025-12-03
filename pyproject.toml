@@ -1,0 +1,24 @@
+[project]
+name = "deepseek-intent-analyzer"
+version = "0.1.0"
+description = "数据仓库意图识别 & 联网搜索助手"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "streamlit>=1.32.2",
+    "requests>=2.31.0",
+    "ruff>=0.1.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+]
+
+[project.scripts]
+app = "streamlit:main"
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
+

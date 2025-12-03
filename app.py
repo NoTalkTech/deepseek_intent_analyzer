@@ -1,7 +1,7 @@
 # app.py
 
 import streamlit as st
-from analyzer import analyze_question, web_search
+from analyzer import analyze_question
 import json
 
 st.set_page_config(page_title="数据仓库问答分析器", layout="wide")
@@ -34,5 +34,5 @@ if st.button("🚀 开始分析", type="primary") and input_question.strip():
             label="💾 下载结果 JSON",
             data=json.dumps(result, ensure_ascii=False, indent=2),
             file_name="intent_analysis.json",
-            mime="application/json"
+            mime="application/json",
         )

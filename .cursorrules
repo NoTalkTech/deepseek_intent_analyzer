@@ -1,0 +1,24 @@
+# 项目规则
+
+## Python 项目配置
+- 使用 `uv` 进行包管理
+- Python 版本：3.11
+- 代码格式化：Ruff
+- 依赖文件：`pyproject.toml`
+
+## 命令快捷方式
+- 启动应用：`./run.sh` 或 `uv run streamlit run app.py`
+- 格式化：`uv run ruff format .`
+- 检查：`uv run ruff check .`
+
+## 依赖管理
+- 添加依赖：`uv add package-name`
+- 删除依赖：`uv remove package-name`
+- 更新依赖：`uv lock --upgrade && uv sync`
+
+## 项目结构
+- `app.py` - Streamlit 主应用
+- `analyzer.py` - 核心分析逻辑
+- `config.py` - 配置管理
+- `run.sh` - 快速启动脚本
+
