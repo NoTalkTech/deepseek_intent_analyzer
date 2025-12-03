@@ -107,15 +107,29 @@ def analyze_question(question, top_n=3):
     full_prompt = f"{question}\n\nsearch_info:\n{search_summary}"
     content = call_deepseek(full_prompt, SYSTEM_PROMPT, 0.3)
     try:
-        json_str = re.search(r"\{[\s\S]+\}", content).group(0)
+        # 检查 re.search 返回值，避免 AttributeError
+        match = re.search(r"\{[\s\S]+\}", content)
+        if not match:
+            raise ValueError("模型输出中未找到 JSON 对象")
+
+        json_str = match.group(0)
         parsed = json.loads(json_str)
         parsed.update(
             {"question": question, "search_summary": search_summary, "references": references}
         )
         return parsed, content, search_summary, references
-    except Exception:
+    except (ValueError, json.JSONDecodeError) as e:
+        # 更精确的错误处理
         return (
-            {"error": "无法解析模型输出", "raw_output": content},
+            {"error": f"无法解析模型输出: {str(e)}", "raw_output": content},
+            content,
+            search_summary,
+            references,
+        )
+    except Exception as e:
+        # 捕获其他未预期的错误
+        return (
+            {"error": f"分析过程出错: {str(e)}", "raw_output": content},
             content,
             search_summary,
             references,
