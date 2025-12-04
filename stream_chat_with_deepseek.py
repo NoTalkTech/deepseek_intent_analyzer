@@ -234,7 +234,7 @@ def main():
         messages = trim_messages(messages)
         
         # 获取并显示AI响应
-        print_colored("\nAI: ", 'BLUE')
+        print_colored("\nDeepSeek: ", 'BLUE')
         assistant_content, usage = chat_stream(messages)
         
         # 记录token消耗

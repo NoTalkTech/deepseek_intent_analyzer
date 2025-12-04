@@ -5,6 +5,7 @@ __pycache__/
 *.so
 .Python
 .ruff_cache/
+chat_history/
 
 # Virtual environments
 .venv/
